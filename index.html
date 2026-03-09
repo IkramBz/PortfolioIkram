@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Ikram Bouizdouzen </title>
+    <meta name="description" content="Webdev">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body class="body h-screen ">
+<header>
+</header>
+<main class="hidden md:flex h-screen overflow-hidden">
+    <!-- links -->
+    <section class="md:w-1/4 p-4 bg-white/30 backdrop-blur-sm overflow-y-auto">
+
+        <!-- Personal info als codeblokje -->
+        <div class="code-snippet mb-6">
+            <span class="comment">// Personal info</span><br>
+            <span class="keyword">const</span> me = {<br>
+            &nbsp;&nbsp;birthDate: <span class="string">'06-11-2004'</span>,<br>
+            &nbsp;&nbsp;location: <span class="string">'Antwerpen'</span>,<br>
+            &nbsp;&nbsp;country: <span class="string">'België'</span><br>
+            };
+        </div>
+
+        <!-- Talen als codeblokje -->
+        <div class="code-snippet mb-6">
+            <span class="comment">// Languages</span><br>
+            <span class="keyword">const</span> languages = [<br>
+            &nbsp;&nbsp;{ name: <span class="string">'Nederlands'</span>, level: <span class="string">'moedertaal'</span> },<br>
+            &nbsp;&nbsp;{ name: <span class="string">'Arabisch'</span>, level: <span class="string">'vloeiend'</span> },<br>
+            &nbsp;&nbsp;{ name: <span class="string">'Engels'</span>, level: <span class="string">'goed'</span> }<br>
+            ];
+        </div>
+
+        <!-- Soft skills als codeblokje -->
+        <div class="code-snippet">
+            <span class="comment">// Soft skills</span><br>
+            <span class="keyword">const</span> softSkills = [<br>
+            &nbsp;&nbsp;<span class="string">'Teamwork'</span>,<br>
+            &nbsp;&nbsp;<span class="string">'Communicatie'</span>,<br>
+            &nbsp;&nbsp;<span class="string">'Probleemoplossend'</span>,<br>
+            &nbsp;&nbsp;<span class="string">'Verantwoordelijk'</span>,<br>
+            &nbsp;&nbsp;<span class="string">'Leergierig'</span>,<br>
+            &nbsp;&nbsp;<span class="string">'Zelfstandig'</span><br>
+            ];
+        </div>
+
+    </section>
+    <!-- midden -->
+    <section class="md:w-1/2 bg-white flex-1 overflow-y-auto p-6 ">
+        <div class="relative h-80 bg-gray-300 rounded-t-xl overflow-hidden">
+
+        </div>
+
+        <div class="relative flex items-end justify-between mt-[-3rem] px-2">
+            <img src="../img/foto.png"
+                 class="w-28 h-28 rounded-full border-4 border-white object-cover bg-gray-200 shadow-lg z-20"
+                 alt="profielfoto"/>
+
+            <!-- LinkedIn en GitHub logo's rechtsonder, naast de profielfoto (onder de banner) -->
+            <div class="flex space-x-3 mb-2 mr-1 z-10">
+                <a href="https://www.linkedin.com/in/ikrambouizdouzen" target="_blank" aria-label="LinkedIn" class="social-icon bg-white/90 rounded-full p-2 shadow-md hover:bg-white">
+                    <svg class="w-5 h-5 text-[#0A66C2]" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C0.792 0 0 0.774 0 1.729v20.542C0 23.227 0.792 24 1.771 24h20.451c0.979 0 1.771-0.773 1.771-1.729V1.729C24 0.774 23.204 0 22.225 0z"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/IkramBz" target="_blank" aria-label="GitHub" class="social-icon bg-white/90 rounded-full p-2 shadow-md hover:bg-white">
+                    <svg class="w-5 h-5 text-gray-800" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="">
+            <h1 class="text-4xl font-bold text-personal text-center mb-4">Ikram Bouizdouzen</h1>
+            <p class="text-gray-700 mb-4">
+                Hoi, ik ben Ikram, studente programmeren aan Thomas More. Ik ben geintresseerd in front-end development,
+                ik vind het geweldig om interfaces te bouwen die er niet alleen goed uitzien, maar ook fijn aanvoelen om te gebruiken.
+                Tijdens mijn opleiding heb ik onder andere een C# applicatie gebouwd voor het beheer van cadeaubonnen. In teamprojecten
+                neem ik graag de rol op van iemand die overzicht bewaakt: realistische planningen, duidelijke deadlines en een goede
+                sfeer. Ik ben op zoek naar een stagebedrijf waar ik mijn front-end skills verder kan aanscherpen en kan meebouwen aan echte producten.
+            </p>
+
+            <h2 class="mt-8 mb-4 text-2xl text-personal font-bold">Projecten in de spotlight</h2>
+
+            <div class="bg-white p-6 mt-4 border-t-2 rounded-xl shadow-md hover:shadow-xl transition">
+                <h3 class="text-xl font-semibold mb-2">Dynamische Webapps</h3>
+                <p class="text-gray-700">Project voor het vak Dynamische Webapps. Een app waar docenten quiz vragen kunnen toevoegen en waar studenten deze vragen kunnen oefenen doormiddel van een quiz starten.  </p>
+                <a href="https://eindopdrachtikramda.onrender.com/" class="text-blue-800"> Bekijk het hier - Je kan de applicatie testen door een account aan te maken! </a>
+            </div>
+
+        </div>
+        <!-- Werkervaring Sectie -->
+        <section class="mt-8 mb-8">
+            <h2 class="text-2xl text-personal font-bold mb-6">Werkervaring</h2>
+
+            <div class="relative border-l-2 border-personal ml-8">
+
+                <!-- Logiscool Coach -->
+                <div class="mb-8 ml-6 relative">
+                    <span class="absolute -left-5 top-0 w-4 h-4 bg-personal rounded-full border-2 border-white"></span>
+                    <p class="text-gray-500 text-sm">1 september 2025 – heden</p>
+                    <h3 class="text-xl font-semibold">Logiscool Coach</h3>
+                    <p class="text-gray-700 mt-1">
+                        Programmeerlessen geven aan kinderen.
+                    </p>
+                </div>
+
+                <!-- Kampcoach Beweeghelden -->
+                <div class="mb-8 ml-6 relative">
+                    <span class="absolute -left-5 top-0 w-4 h-4 bg-personal rounded-full border-2 border-white"></span>
+                    <p class="text-gray-500 text-sm">7 april 2025 – heden</p>
+                    <h3 class="text-xl font-semibold">Kampcoach – Beweeghelden</h3>
+                    <p class="text-gray-700 mt-1">
+                        Kinderen stem en crea sessies geven, stimuleren op een leerrijke manier.
+                    </p>
+                </div>
+
+                <!-- Jobstudent Engie -->
+                <div class="mb-8 ml-6 relative">
+                    <span class="absolute -left-5 top-0 w-4 h-4 bg-personal rounded-full border-2 border-white"></span>
+                    <p class="text-gray-500 text-sm">5 februari 2024 – 22 juli 2024</p>
+                    <h3 class="text-xl font-semibold">Jobstudent Klantendienst – Engie</h3>
+                    <p class="text-gray-700 mt-1">
+                        Telefoon opnemen, contracten opstellen, informatie geven ivm energieprijzen, een verhuis
+                        regelen, Moves, Sales & Callback.
+                    </p>
+                </div>
+
+                <!-- Stage Agfa Gevaert (oudste) -->
+                <div class="mb-8 ml-6 relative">
+                    <span class="absolute -left-5 top-0 w-4 h-4 bg-personal rounded-full border-2 border-white"></span>
+                    <p class="text-gray-500 text-sm">7 maart 2022 – 1 april 2022</p>
+                    <h3 class="text-xl font-semibold">Stage Agfa Gevaert – Mortsel</h3>
+                    <p class="text-gray-700 mt-1">
+                        Pc’s installeren en instellen, switches controleren, server installeren en launchen, hardware
+                        onderdelen van pc’s wisselen/upgraden.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+        </div>
+    </section>
+    <!-- rechts -->
+    <section class="md:w-1/4 p-4 bg-white/30 backdrop-blur-sm overflow-y-auto">
+
+        <!-- GitHub en Email weer toevoegen?
+        <div class="flex justify-center space-x-4 mb-6">
+            <a href="https://github.com/IkramBz" target="_blank" aria-label="GitHub">
+                <svg class="w-8 h-8 text-personal hover:text-white transition" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+            </a>
+            <a href="mailto:ikrambz@outlook.com" aria-label="Email">
+                <svg class="w-8 h-8 text-personal hover:text-white transition" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l-12-9.725v15.438h24v-15.438l-12 9.725z"/>
+                </svg>
+            </a>
+        </div>-->
+
+        <!-- Frontend - als codeblokje -->
+        <div class="code-snippet mb-6">
+            <span class="comment">// Frontend skills</span><br>
+            <span class="keyword">const</span> frontend = [<br>
+            &nbsp;&nbsp;<span class="string">'HTML'</span>,<br>
+            &nbsp;&nbsp;<span class="string">'CSS'</span>,<br>
+            &nbsp;&nbsp;<span class="string">'JavaScript'</span>,<br>
+            &nbsp;&nbsp;<span class="string">'React'</span>,<br>
+            &nbsp;&nbsp;<span class="string">'Tailwind'</span><br>
+            ];
+        </div>
+
+        <!-- Backend - als codeblokje -->
+        <div class="code-snippet mb-6">
+            <span class="comment">// Backend skills</span><br>
+            <span class="keyword">const</span> backend = [<br>
+            &nbsp;&nbsp;<span class="string">'SQL'</span>,<br>
+            &nbsp;&nbsp;<span class="string">'Java'</span><br>
+            ];
+        </div>
+
+        <!-- Tools - als codeblokje -->
+        <div class="code-snippet mb-6">
+            <span class="comment">// Tools & meer</span><br>
+            <span class="keyword">const</span> tools = {<br>
+            &nbsp;&nbsp;editor: <span class="string">'VS Code'</span>,<br>
+            &nbsp;&nbsp;vcs: <span class="string">'Git'</span>,<br>
+            &nbsp;&nbsp;platform: <span class="string">'GitHub'</span>,<br>
+            &nbsp;&nbsp;css: <span class="string">'Tailwind'</span>,<br>
+            &nbsp;&nbsp;design: <span class="string">'Figma'</span><br>
+            };
+        </div>
+
+        <!-- Optioneel: extra leuk blokje -->
+        <div class="code-snippet">
+            <span class="comment">// Huidige focus</span><br>
+            <span class="keyword">async function</span> <span class="function">learnMore</span>() {<br>
+            &nbsp;&nbsp;await <span class="function">master</span>(<span class="string">'React'</span>);<br>
+            &nbsp;&nbsp;<span class="keyword">return</span> <span class="string">'Stageplaats gevonden!'</span>;<br>
+            }
+        </div>
+
+    </section>
+</main>
+<!-- MOBILE VERSION -->
+<main class="flex flex-col md:hidden min-h-screen ">
+
+    <!-- Header met banner + profielfoto -->
+    <section class="relative">
+        <!-- Banner -->
+        <div class="h-36 bg-gray-300 w-full"></div>
+
+        <!-- Profielfoto gecentreerd over de banner -->
+        <div class="flex justify-between items-end px-4 mt-[-3rem]">
+            <img src="../img/foto.png"
+                 class="w-24 h-24 rounded-full border-4 border-white object-cover bg-gray-200 shadow-lg z-20"
+                 alt="profielfoto"/>
+            <!-- Social icons rechtsonder -->
+            <div class="flex space-x-2 mb-1 z-10">
+                <a href="https://www.linkedin.com/in/ikrambouizdouzen" target="_blank" aria-label="LinkedIn"
+                   class="bg-white rounded-full p-2 shadow-md">
+                    <svg class="w-5 h-5 text-[#0A66C2]" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C0.792 0 0 0.774 0 1.729v20.542C0 23.227 0.792 24 1.771 24h20.451c0.979 0 1.771-0.773 1.771-1.729V1.729C24 0.774 23.204 0 22.225 0z"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/IkramBz" target="_blank" aria-label="GitHub"
+                   class="bg-white rounded-full p-2 shadow-md">
+                    <svg class="w-5 h-5 text-gray-800" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Naam -->
+        <div class="px-4 pt-2 pb-4">
+            <h1 class="text-2xl font-bold text-personal">Ikram Bouizdouzen</h1>
+        </div>
+    </section>
+
+    <!-- Over mij -->
+    <section class="px-4 pb-6">
+        <h2 class="text-xl font-bold text-personal mb-3">Over mij</h2>
+        <p class="text-gray-700 text-sm leading-relaxed">
+            Hoi, ik ben Ikram, studente programmeren aan Thomas More. Ik ben geïnteresseerd in front-end development
+            en vind het geweldig om interfaces te bouwen die er niet alleen goed uitzien, maar ook fijn aanvoelen om te gebruiken.
+            Ik ben op zoek naar een stagebedrijf waar ik mijn front-end skills verder kan aanscherpen.
+        </p>
+    </section>
+
+    <!-- Skills -->
+    <section class="px-4 pb-6 bg-gray-50 pt-4">
+        <h2 class="text-xl font-bold text-personal mb-4">Skills</h2>
+        <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-personal  text-xs rounded-full">HTML</span>
+            <span class="px-3 py-1 bg-personal  text-xs rounded-full">CSS</span>
+            <span class="px-3 py-1 bg-personal  text-xs rounded-full">JavaScript</span>
+            <span class="px-3 py-1 bg-personal  text-xs rounded-full">React</span>
+            <span class="px-3 py-1 bg-personal  text-xs rounded-full">Tailwind</span>
+            <span class="px-3 py-1 bg-personal  text-xs rounded-full">SQL</span>
+            <span class="px-3 py-1 bg-personal  text-xs rounded-full">Java</span>
+            <span class="px-3 py-1 bg-personal  text-xs rounded-full">Git</span>
+            <span class="px-3 py-1 bg-personal  text-xs rounded-full">Figma</span>
+        </div>
+    </section>
+
+    <!-- Talen & Soft Skills -->
+    <section class="px-4 py-6">
+        <h2 class="text-xl font-bold text-personal mb-4">Talen</h2>
+        <div class="space-y-1 text-sm text-gray-700">
+            <p><span class="font-medium">Nederlands</span> – moedertaal</p>
+            <p><span class="font-medium">Arabisch</span> – vloeiend</p>
+            <p><span class="font-medium">Engels</span> – goed</p>
+        </div>
+    </section>
+
+    <!-- Persoonlijke info -->
+    <section class="px-4 pb-6 bg-gray-50 pt-4">
+        <h2 class="text-xl font-bold text-personal mb-4">Persoonlijke info</h2>
+        <div class="space-y-1 text-sm text-gray-700">
+            <p><span class="font-medium">Geboortedatum</span> – 06-11-2004</p>
+            <p><span class="font-medium">Locatie</span> – Antwerpen, België</p>
+        </div>
+    </section>
+
+    <!-- Projecten in de spotlight -->
+    <section class="px-4 pb-6 bg-gray-50 pt-4">
+        <h2 class="text-xl font-bold text-personal mb-4">Projecten</h2>
+
+        <div class="bg-white rounded-xl shadow-md p-4 mb-4 border-t-2 border-personal hover:shadow-lg transition">
+            <h3 class="font-semibold text-base mb-1">Dynamische Webapps</h3>
+            <p class="text-gray-600 text-sm mt-1 mb-3">
+                Een app waar docenten quizvragen kunnen toevoegen en studenten deze kunnen oefenen via een quiz.
+            </p>
+            <a href="https://eindopdrachtikramda.onrender.com/" target="_blank"
+               class="text-blue-800 text-sm font-medium">
+                Bekijk het hier →
+            </a>
+        </div>
+
+
+    </section>
+
+    <!-- Werkervaring -->
+    <section class="px-4 py-6">
+        <h2 class="text-xl font-bold text-personal mb-6">Werkervaring</h2>
+
+        <div class="relative border-l-2 border-personal ml-4">
+
+            <div class="mb-6 ml-6 relative">
+                <span class="absolute -left-[1.35rem] top-1 w-4 h-4 bg-personal rounded-full border-2 border-white"></span>
+                <p class="text-gray-500 text-xs mb-1">1 september 2025 – heden</p>
+                <h3 class="font-semibold">Logiscool Coach</h3>
+                <p class="text-gray-600 text-sm mt-1">Programmeerlessen geven aan kinderen.</p>
+            </div>
+
+            <div class="mb-6 ml-6 relative">
+                <span class="absolute -left-[1.35rem] top-1 w-4 h-4 bg-personal rounded-full border-2 border-white"></span>
+                <p class="text-gray-500 text-xs mb-1">7 april 2025 – heden</p>
+                <h3 class="font-semibold">Kampcoach – Beweeghelden</h3>
+                <p class="text-gray-600 text-sm mt-1">Kinderen stem en crea sessies geven, stimuleren op een leerrijke manier.</p>
+            </div>
+
+            <div class="mb-6 ml-6 relative">
+                <span class="absolute -left-[1.35rem] top-1 w-4 h-4 bg-personal rounded-full border-2 border-white"></span>
+                <p class="text-gray-500 text-xs mb-1">5 februari 2024 – 22 juli 2024</p>
+                <h3 class="font-semibold">Jobstudent Klantendienst – Engie</h3>
+                <p class="text-gray-600 text-sm mt-1">Telefoon opnemen, contracten opstellen, informatie geven ivm energieprijzen, verhuis regelen, Moves, Sales & Callback.</p>
+            </div>
+
+            <div class="mb-6 ml-6 relative">
+                <span class="absolute -left-[1.35rem] top-1 w-4 h-4 bg-personal rounded-full border-2 border-white"></span>
+                <p class="text-gray-500 text-xs mb-1">7 maart 2022 – 1 april 2022</p>
+                <h3 class="font-semibold">Stage Agfa Gevaert – Mortsel</h3>
+                <p class="text-gray-600 text-sm mt-1">Pc's installeren en instellen, switches controleren, server installeren, hardware onderdelen wisselen/upgraden.</p>
+            </div>
+
+        </div>
+    </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,83 @@
+body {
+    background-color: #E9E7E3;
+}
+
+/* Syntax highlighting kleurtjes (optioneel) */
+.code-snippet .keyword {
+    color: #569cd6;  /* Blauw voor keywords */
+}
+
+.code-snippet .string {
+    color: #ce9178;  /* Oranje/bruin voor strings */
+}
+
+.code-snippet .comment {
+    color: #6a9955;  /* Groen voor comments */
+}
+
+.code-snippet .function {
+    color: #dcdcaa;  /* Geel voor functions */
+}
+
+/* Zwevende codeblokjes voor links en rechts */
+.code-snippet {
+    background-color: #1e1e1e;  /* Donkere achtergrond zoals VS Code */
+    color: #d4d4d4;             /* Lichte tekst */
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #321220;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    width: 220px;
+    margin: 1rem auto;
+    opacity: 0.9;
+    transform: rotate(-1deg);  /* Lichte rotatie voor speels effect */
+    transition: transform 0.3s ease;
+}
+
+.code-snippet:hover {
+    transform: rotate(0deg) scale(1.05);
+    opacity: 1;
+    box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.4);
+}
+
+/* Afwisselende rotatie voor de blokjes */
+.code-snippet:nth-child(odd) {
+    transform: rotate(1deg);
+}
+
+.code-snippet:nth-child(even) {
+    transform: rotate(-2deg);
+}
+
+@media (max-width: 768px) {
+    /* Mobile zichtbaar, desktop verborgen */
+    .mbh {
+        display: flex;
+        flex-direction: column;
+    }
+    .hfdm {
+        display: none;
+    }
+
+    /* Padding en spacing voor mobiel */
+    main.mb h,
+    section {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    /* Video banner responsive */
+    iframe#youtube-video {
+        height: 200px; /* kleiner op mobiel */
+    }
+
+    /* Social icons kleiner maken */
+    .social-icon {
+        padding: 1.5;
+        width: 30px;
+        height: 30px;
+    }
+}

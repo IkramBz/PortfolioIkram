@@ -1,0 +1,7 @@
+@tailwind utilities;
+
+body {
+    background: linear-gradient(135deg,
+    oklch(28.4% 0.109 3.907) 0%,
+    oklch(35% 0.12 10) 100%);
+}
