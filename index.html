@@ -7,7 +7,9 @@
     <meta name="description" content="Webdev">
     <link rel="stylesheet" href="../css/styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
-
+<style> .banner-bg {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}</style>
 </head>
 <body class="body h-screen ">
 <header>
@@ -52,10 +54,9 @@
     </section>
     <!-- midden -->
     <section class="md:w-1/2 bg-white flex-1 overflow-y-auto p-6 ">
-        <div class="relative h-80 bg-gray-300 rounded-t-xl overflow-hidden">
-
+        <div class="relative h-40 rounded-t-xl overflow-hidden banner-bg">
+            <canvas id="bannerCanvas" class="absolute inset-0 w-full h-full"></canvas>
         </div>
-
         <div class="relative flex items-end justify-between mt-[-3rem] px-2">
             <img src="../img/foto.png"
                  class="w-28 h-28 rounded-full border-4 border-white object-cover bg-gray-200 shadow-lg z-20"
@@ -343,3 +344,42 @@
 </main>
 </body>
 </html>
+
+<script>
+    const canvas = document.getElementById('bannerCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+
+    const symbols = ['{}', '//', '=>', '<>', '()', '[]', '&&', '||', '+=', '!=', 'fn', ';;'];
+    const particles = Array.from({ length: 30 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        symbol: symbols[Math.floor(Math.random() * symbols.length)],
+        speed: 0.3 + Math.random() * 0.5,
+        opacity: 0.1 + Math.random() * 0.3,
+        size: 12 + Math.floor(Math.random() * 14)
+    }));
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+            ctx.font = `${p.size}px monospace`;
+            ctx.fillStyle = `rgba(180, 210, 255, ${p.opacity})`;
+            ctx.fillText(p.symbol, p.x, p.y);
+            p.y -= p.speed;
+            if (p.y < -20) {
+                p.y = canvas.height + 20;
+                p.x = Math.random() * canvas.width;
+                p.symbol = symbols[Math.floor(Math.random() * symbols.length)];
+            }
+        });
+        requestAnimationFrame(draw);
+    }
+    draw();
+
+    window.addEventListener('resize', () => {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+    });
+</script>
