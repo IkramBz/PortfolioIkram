@@ -1,26 +1,45 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ikram Bouizdouzen — Developer</title>
-    <meta name="description" content="Fullstack developer portfolio van Ikram Bouizdouzen">
+    <meta name="description" content="Full-stack developer portfolio of Ikram Bouizdouzen">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <script>
+        try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+    </script>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --bg:        #0a0c12;
-            --surface:   #10131c;
-            --surface2:  #171b28;
-            --border:    #232840;
-            --pink:      #7b8fff;
-            --pink-soft: #4f5fcf;
-            --pink-glow: rgba(123,143,255,0.10);
-            --text:      #eceef8;
-            --muted:     #6a6e8a;
-            --accent:    #bec5ff;
+            --bg:     #000;
+            --border: #1a1a1a;
+            --accent: #7fd1ae;
+            --text:   #f2f2f2;
+            --soft:   #c4c4c4;
+            --muted:  #858585;
+            --img-bg: #0a0a0a;
+            --veil:   rgba(0,0,0,0.94);
+            --on-accent: #000;
+            --sym:    255, 255, 255;
+            color-scheme: dark;
+        }
+
+        :root[data-theme="light"] {
+            --bg:     #fbfbf9;
+            --border: #e6e6e0;
+            --accent: #177a55;
+            --text:   #111;
+            --soft:   #3d3d3d;
+            --muted:  #6c6c6c;
+            --img-bg: #eeeeea;
+            --veil:   rgba(251,251,249,0.94);
+            --on-accent: #fff;
+            --sym:    0, 0, 0;
+            color-scheme: light;
         }
 
         html { scroll-behavior: smooth; }
@@ -31,671 +50,429 @@
             color: var(--text);
             min-height: 100vh;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* ── NOISE OVERLAY ── */
-        body::before {
-            content: '';
+        a { color: inherit; }
+        a:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
+
+        .theme-toggle {
+            position: fixed; top: 1rem; right: 1rem; z-index: 5;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.74rem;
+            color: var(--soft);
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 0.4rem 0.9rem;
+            cursor: pointer;
+            transition: color .2s, border-color .2s;
+        }
+        .theme-toggle:hover, .theme-toggle:focus-visible { color: var(--accent); border-color: var(--accent); outline: none; }
+
+        /* ── Achtergrond: bewegende symbolen ── */
+        #bg {
             position: fixed; inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-            pointer-events: none; z-index: 9999;
-            opacity: 0.6;
-        }
-
-        /* ── LAYOUT ── */
-        .site-wrapper {
-            display: grid;
-            grid-template-columns: 280px 1fr 260px;
-            grid-template-rows: auto 1fr;
-            min-height: 100vh;
-        }
-
-        /* ── HEADER / HERO ── */
-        .hero {
-            grid-column: 1 / -1;
-            padding: 3rem 3rem 0;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-canvas {
-            position: absolute; inset: 0;
             width: 100%; height: 100%;
+            z-index: 0;
             pointer-events: none;
         }
 
-        .hero-left {
-            position: relative; z-index: 2;
-            padding-bottom: 2.5rem;
-        }
-
-        .hero-eyebrow {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.7rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--pink);
-            margin-bottom: 1rem;
-        }
-
-        .hero-name {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 6vw, 5.5rem);
-            font-weight: 900;
-            line-height: 0.95;
-            letter-spacing: -0.02em;
-            color: var(--text);
-        }
-
-        .hero-name em {
-            font-style: italic;
-            color: var(--pink);
-        }
-
-        .hero-tagline {
-            margin-top: 1.2rem;
-            font-size: 0.95rem;
-            color: var(--muted);
-            max-width: 360px;
-            line-height: 1.6;
-        }
-
-        .hero-right {
-            position: relative; z-index: 2;
-            padding-bottom: 2.5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 1.5rem;
-        }
-
-        .avatar-wrap {
-            position: relative;
-        }
-        .avatar-wrap::before {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            border-radius: 50%;
-            background: conic-gradient(#7b8fff, #4f5fcf, transparent, #7b8fff);
-            animation: spin 8s linear infinite;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        .avatar {
-            width: 110px; height: 110px;
-            border-radius: 50%;
-            object-fit: cover;
-            display: block;
+        /* ── Paneel in het midden ── */
+        .panel {
             position: relative; z-index: 1;
-            background: var(--surface2);
-        }
-
-        .social-links {
-            display: flex; gap: 0.75rem;
-        }
-
-        .social-btn {
-            display: flex; align-items: center; justify-content: center;
-            width: 38px; height: 38px;
-            border-radius: 50%;
-            border: 1px solid var(--border);
-            color: var(--muted);
-            text-decoration: none;
-            transition: border-color .2s, color .2s, background .2s;
-        }
-        .social-btn:hover { border-color: var(--pink); color: var(--pink); background: var(--pink-glow); }
-        .social-btn svg { width: 16px; height: 16px; fill: currentColor; }
-
-        /* ── SIDEBAR LEFT ── */
-        .sidebar-left {
-            grid-column: 1;
-            border-right: 1px solid var(--border);
-            padding: 2.5rem 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 2.5rem;
-        }
-
-        /* ── MAIN CONTENT ── */
-        .main-content {
-            grid-column: 2;
-            padding: 2.5rem 3rem;
-            overflow-y: auto;
-        }
-
-        /* ── SIDEBAR RIGHT ── */
-        .sidebar-right {
-            grid-column: 3;
+            width: 66vw;
+            min-width: 320px;
+            max-width: 980px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background: var(--bg);
             border-left: 1px solid var(--border);
-            padding: 2.5rem 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 2.5rem;
+            border-right: 1px solid var(--border);
+            padding: 4rem 4rem 6rem;
         }
 
-        /* ── SECTION TITLE ── */
-        .section-title {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.65rem;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--pink);
-            margin-bottom: 1.25rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .section-title::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border);
-        }
-
-        /* ── CODE BLOCK ── */
-        .code-block {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.75rem;
-            line-height: 1.8;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 1.25rem 1.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .code-block::before {
-            content: '● ● ●';
+        /* ── Hero ── */
+        .photo {
             display: block;
-            font-size: 0.5rem;
-            letter-spacing: 0.2em;
-            color: var(--border);
-            margin-bottom: 0.75rem;
-        }
-        .cb-comment { color: #4d5568; }
-        .cb-keyword { color: #81a1d4; }
-        .cb-string  { color: #c3b983; }
-        .cb-fn      { color: #e87aac; }
-
-        /* ── ABOUT ── */
-        .about-text {
-            font-size: 1rem;
-            line-height: 1.8;
-            color: #c9c5c0;
-            font-weight: 300;
-        }
-        .about-text strong {
-            color: var(--text);
-            font-weight: 500;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            max-height: 440px;
+            object-fit: cover;
+            object-position: center 30%;
+            border-radius: 6px;
+            background: var(--img-bg);
         }
 
-        /* ── PROJECT CARD ── */
-        .projects-grid {
-            display: grid;
-            gap: 1rem;
-            margin-top: 0.5rem;
-        }
-
-        .project-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            position: relative;
-            overflow: hidden;
-            transition: border-color .25s, transform .25s;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-        .project-card:hover {
-            border-color: var(--pink-soft);
-            transform: translateY(-2px);
-        }
-        .project-card::before {
-            content: '';
-            position: absolute; top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #7b8fff, #4f5fcf);
-            opacity: 0;
-            transition: opacity .25s;
-        }
-        .project-card:hover::before { opacity: 1; }
-
-        .project-tag {
+        .eyebrow {
             font-family: 'DM Mono', monospace;
-            font-size: 0.65rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--pink);
-            margin-bottom: 0.5rem;
+            font-size: 0.78rem;
+            color: var(--accent);
+            margin-top: 2.5rem;
         }
-        .project-title {
+        h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.25rem;
+            font-size: clamp(2.6rem, 5vw, 4rem);
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-top: 0.75rem;
         }
-        .project-desc {
-            font-size: 0.88rem;
-            color: var(--muted);
-            line-height: 1.6;
-        }
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
+        .tagline {
             margin-top: 1rem;
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: var(--soft);
+        }
+
+        .facts {
+            display: flex; flex-wrap: wrap; gap: 0.4rem 2rem;
+            margin-top: 2rem;
             font-family: 'DM Mono', monospace;
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
-            color: var(--pink);
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+        .facts span { color: var(--soft); }
+
+        .links {
+            display: flex; gap: 1.5rem;
+            margin-top: 1.25rem;
+            font-size: 0.9rem;
+        }
+        .links a {
             text-decoration: none;
-        }
-        .project-link::after { content: '→'; transition: transform .2s; }
-        .project-card:hover .project-link::after { transform: translateX(4px); }
-
-        /* ── TIMELINE ── */
-        .timeline {
-            position: relative;
-            padding-left: 1.5rem;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute; left: 0; top: 6px; bottom: 0;
-            width: 1px;
-            background: linear-gradient(to bottom, #7b8fff, transparent);
-        }
-
-        .tl-item {
-            position: relative;
-            margin-bottom: 2rem;
-            animation: fadeUp .5s ease both;
-        }
-        .tl-item:nth-child(1) { animation-delay: .1s; }
-        .tl-item:nth-child(2) { animation-delay: .2s; }
-        .tl-item:nth-child(3) { animation-delay: .3s; }
-        .tl-item:nth-child(4) { animation-delay: .4s; }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(12px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        .tl-dot {
-            position: absolute;
-            left: -1.72rem; top: 4px;
-            width: 10px; height: 10px;
-            border-radius: 50%;
-            background: var(--pink);
-            box-shadow: 0 0 0 3px var(--bg), 0 0 8px #7b8fff;
-        }
-        .tl-date {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.65rem;
-            letter-spacing: 0.1em;
-            color: var(--muted);
-            margin-bottom: 0.3rem;
-        }
-        .tl-title {
-            font-size: 0.95rem;
-            font-weight: 500;
-            margin-bottom: 0.3rem;
-        }
-        .tl-desc {
-            font-size: 0.82rem;
-            color: var(--muted);
-            line-height: 1.6;
-        }
-
-        /* ── SKILL PILLS ── */
-        .skill-group { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-        .skill-pill {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.68rem;
-            letter-spacing: 0.08em;
-            padding: 0.3rem 0.75rem;
-            border-radius: 999px;
-            border: 1px solid var(--border);
-            color: var(--muted);
-            transition: border-color .2s, color .2s, background .2s;
-        }
-        .skill-pill:hover { border-color: var(--pink); color: var(--pink); background: var(--pink-glow); }
-        .skill-pill.highlight { border-color: var(--pink-soft); color: var(--accent); }
-
-        /* ── LANG ROW ── */
-        .lang-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.6rem 0;
             border-bottom: 1px solid var(--border);
-            font-size: 0.85rem;
+            padding-bottom: 2px;
+            transition: color .2s, border-color .2s;
         }
-        .lang-row:last-child { border-bottom: none; }
-        .lang-level {
+        .links a:hover { color: var(--accent); border-color: var(--accent); }
+
+        .links { align-items: center; flex-wrap: wrap; }
+        .links a.cv {
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: 999px;
+            padding: 0.35rem 1rem;
+        }
+        .links a.cv:hover { background: var(--accent); color: var(--on-accent); }
+
+        /* ── Secties: label links, inhoud rechts ── */
+        section {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 1rem 2rem;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+        .label {
             font-family: 'DM Mono', monospace;
-            font-size: 0.65rem;
-            color: var(--pink);
+            font-size: 0.78rem;
+            color: var(--muted);
+            padding-top: 0.2rem;
         }
 
-        /* ── FOCUS CARD ── */
-        .focus-card {
-            background: linear-gradient(135deg, var(--surface) 0%, rgba(232,122,172,0.06) 100%);
-            border: 1px solid var(--pink-soft);
-            border-radius: 12px;
-            padding: 1.25rem 1.5rem;
+        .about p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            font-weight: 300;
+            color: var(--soft);
+            max-width: 60ch;
+        }
+        .about p + p { margin-top: 1rem; }
+        .about strong { color: var(--text); font-weight: 500; }
+
+        /* ── Lijsten (projecten, ervaring, opleiding) ── */
+        .item { padding-bottom: 1.75rem; }
+        .item:last-child { padding-bottom: 0; }
+
+        .item-head {
+            display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 1rem;
+        }
+        .item-title { font-size: 1.05rem; font-weight: 500; }
+        .item-meta {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.74rem;
+            color: var(--muted);
+        }
+        .item-desc {
+            margin-top: 0.4rem;
+            font-size: 0.92rem;
+            line-height: 1.65;
+            color: var(--muted);
+            max-width: 62ch;
+        }
+
+        a.project { display: block; text-decoration: none; }
+        a.project .item-title { transition: color .2s; }
+        a.project:hover .item-title, a.project:focus-visible .item-title { color: var(--accent); }
+        .stats { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.9rem; }
+        .stat {
             font-family: 'DM Mono', monospace;
             font-size: 0.72rem;
-            line-height: 1.9;
-            color: #a0a0b0;
+            color: var(--soft);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 0.25rem 0.75rem;
         }
-        .focus-card .fn { color: var(--pink); }
-        .focus-card .kw { color: #81a1d4; }
-        .focus-card .str { color: #c3b983; }
-        .focus-card .ret { color: var(--accent); }
-
-        /* ── DIVIDER ── */
-        .divider {
-            border: none;
-
-            margin: 2rem 0;
+        .stat::before {
+            content: '';
+            display: inline-block;
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            background: var(--accent);
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+        .go.private { color: var(--muted); }
+        .go {
+            display: inline-block;
+            margin-top: 0.6rem;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.74rem;
+            color: var(--accent);
         }
 
-        /* ── MOBILE ── */
+        /* ── Skills ── */
+        .skills { display: grid; gap: 1.1rem; }
+        .skill-row { display: grid; grid-template-columns: 110px 1fr; gap: 0.25rem 1rem; font-size: 0.92rem; }
+        .skill-row dt { color: var(--muted); }
+        .skill-row dd { color: var(--soft); line-height: 1.7; }
+
+        /* ── Mobiel ── */
         @media (max-width: 900px) {
-            .site-wrapper {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto;
-            }
-            .hero {
-                grid-column: 1;
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 2rem 1.5rem 2rem;
-            }
-            .hero-right { align-items: flex-start; flex-direction: row; align-items: center; }
-            .sidebar-left, .sidebar-right {
-                grid-column: 1;
-                border: none;
-                border-top: 1px solid var(--border);
-                padding: 2rem 1.5rem;
-            }
-            .main-content {
-                grid-column: 1;
-                padding: 2rem 1.5rem;
-            }
+            .panel { width: 100%; max-width: none; padding: 2rem 1.5rem 4rem; border: none; background: var(--veil); }
+            section { grid-template-columns: 1fr; margin-top: 3rem; }
+            .skill-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-<div class="site-wrapper">
 
-    <!-- ══ HERO ══ -->
-    <header class="hero">
-        <canvas class="hero-canvas" id="heroCanvas"></canvas>
+<button class="theme-toggle" id="themeToggle" type="button">light mode</button>
 
-        <div class="hero-left">
-            <div class="hero-eyebrow">// fullstack developer in opleiding</div>
-            <h1 class="hero-name">
-                Ikram<br><em>Bouizdouzen</em>
-            </h1>
-            <p class="hero-tagline">
-                Bouwt applicaties die écht werken, van frontend tot backend, van design tot deploy.
-            </p>
+<canvas id="bg" aria-hidden="true"></canvas>
+
+<div class="panel">
+
+    <header>
+        <img class="photo" src="../img/fotooo.png" alt="Ikram Bouizdouzen">
+        <p class="eyebrow">// full-stack dev, always learning</p>
+        <h1>Ikram Bouizdouzen</h1>
+        <p class="tagline">I build things that work. Frontend, backend, the bit in between.</p>
+
+        <div class="facts">
+            <div>born <span>2004-11-06</span></div>
+            <div>city <span>Antwerp</span></div>
+            <div>country <span>Belgium</span></div>
         </div>
 
-        <div class="hero-right">
-            <div class="avatar-wrap">
-                <img class="avatar" src="../img/foto.png" alt="Ikram Bouizdouzen"/>
-            </div>
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/ikrambouizdouzen" target="_blank" aria-label="LinkedIn" class="social-btn">
-                    <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C0.792 0 0 0.774 0 1.729v20.542C0 23.227 0.792 24 1.771 24h20.451c0.979 0 1.771-0.773 1.771-1.729V1.729C24 0.774 23.204 0 22.225 0z"/></svg>
-                </a>
-                <a href="https://github.com/IkramBz" target="_blank" aria-label="GitHub" class="social-btn">
-                    <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                </a>
-                <a href="mailto:ikrambz@outlook.com" aria-label="Email" class="social-btn">
-                    <svg viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/></svg>
-                </a>
-            </div>
-        </div>
+        <nav class="links" aria-label="Contact">
+            <a href="https://github.com/IkramBz" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/ikrambouizdouzen" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="mailto:ikrambz@outlook.com">Email</a>
+            <a class="cv" href="../cv/CV-Ikram-Bouizdouzen.pdf" download>Download CV</a>
+        </nav>
     </header>
 
-    <!-- ══ SIDEBAR LEFT ══ -->
-    <aside class="sidebar-left">
-
+    <section class="about">
+        <div class="label">about me</div>
         <div>
-            <div class="section-title">Profiel</div>
-            <div class="code-block">
-                <span class="cb-keyword">const</span> me = {<br>
-                &nbsp;&nbsp;born: <span class="cb-string">'06-11-2004'</span>,<br>
-                &nbsp;&nbsp;city: <span class="cb-string">'Antwerpen'</span>,<br>
-                &nbsp;&nbsp;country: <span class="cb-string">'België'</span><br>
-                };
-            </div>
+            <p>
+                Hi, I'm <strong>Ikram</strong>. I study programming at <strong>Thomas More</strong>
+                and mostly like building things that just work, frontend and backend included.
+            </p>
+            <p>
+                I plan realistically, hit my deadlines and get along fine with people.
+                Right now I'm interning at <strong>Bookbetter</strong>.
+            </p>
         </div>
+    </section>
 
+    <section>
+        <div class="label">projects</div>
         <div>
-            <div class="section-title">Talen</div>
-            <div class="lang-row">
-                <span>Nederlands</span>
-                <span class="lang-level">moedertaal</span>
+            <div class="item">
+                <div class="item-head">
+                    <span class="item-title">Camp planning</span>
+                    <span class="item-meta">React, Firebase</span>
+                </div>
+                <p class="item-desc">A platform where volunteers can submit their availability and administrators can review it to build a schedule.</p>
+                <div class="stats">
+                    <span class="stat">180 users</span>
+                    <span class="stat">used daily</span>
+                    <span class="stat">runs smoothly</span>
+                </div>
+                <span class="go private">private application</span>
             </div>
-            <div class="lang-row">
-                <span>Arabisch</span>
-                <span class="lang-level">vloeiend</span>
-            </div>
-            <div class="lang-row">
-                <span>Engels</span>
-                <span class="lang-level">goed</span>
-            </div>
-        </div>
 
-        <div>
-            <div class="section-title">Soft skills</div>
-            <div class="skill-group">
-                <span class="skill-pill">Teamwork</span>
-                <span class="skill-pill">Communicatie</span>
-                <span class="skill-pill">Probleemoplossend</span>
-                <span class="skill-pill">Verantwoordelijk</span>
-                <span class="skill-pill">Leergierig</span>
-                <span class="skill-pill">Zelfstandig</span>
-            </div>
-        </div>
-
-    </aside>
-
-    <!-- ══ MAIN ══ -->
-    <main class="main-content">
-
-        <div class="section-title">Over mij</div>
-        <p class="about-text">
-            Hoi, ik ben <strong>Ikram</strong>, studente programmeren aan <strong>Thomas More</strong>.
-            Ik bouw applicaties die écht werken, waarbij frontend en backend op elkaar aansluiten
-            en het eindresultaat gewoon klopt.
-        </p>
-        <p class="about-text" style="margin-top:1rem;">
-            In teamprojecten let ik op het grote plaatje: realistische planning, deadlines halen en soepele
-            samenwerking. Ik ben op zoek naar een stagebedrijf waar ik mee kan bouwen aan echte projecten als
-            <strong>fullstack developer</strong>.
-        </p>
-
-        <hr class="divider">
-
-        <div class="section-title">Projecten</div>
-
-        <div class="projects-grid">
-
-            <a href="https://kamp-systeem.web.app/auth" target="_blank" class="project-card">
-                <div class="project-tag">React</div>
-                <div class="project-title">Planning kampen</div>
-                <p class="project-desc">
-                    Platform waar vrijwilligers hun beschikbaarheden kunnen doorgeven en beheerders dit kunnen bekijken om een planning te maken.
+            <a class="item project" href="https://crownfield-stud.web.app/" target="_blank" rel="noopener">
+                <div class="item-head">
+                    <span class="item-title">Crownfield</span>
+                    <span class="item-meta">HTML, CSS, JavaScript</span>
+                </div>
+                <p class="item-desc">
+                    A site for the harpg (Horse Art RolePlay Game) hosted on MyHorsez.com.
+                    Registrations have to be approved. To take a look at the application you can
+                    log in with username: portfolio password: wachtwoordportfolio
                 </p>
-                <span class="project-link">Bekijk live</span>
+                <span class="go">take a look</span>
             </a>
 
-        </div>
-        <div class="projects-grid">
-
-            <a href="https://crownfield-stud.web.app/" target="_blank" class="project-card">
-                <div class="project-tag">HTML - CSS - JAVASCRIPT</div>
-                <div class="project-title">Crownfield</div>
-                <p class="project-desc">
-                    Een site voor de harpg (Horse Art RolePlay Game) die zich bevindt op MyHorsez.com.
-                    Registratie moet goedgekeurd worden, om de applicatie eens te bekijken kan je
-                    inloggen met gebruikersnaam: portfolio wachtwoord: wachtwoordportfolio
+            <a class="item project" href="https://eindopdrachtikramda.onrender.com/" target="_blank" rel="noopener">
+                <div class="item-head">
+                    <span class="item-title">Dynamic Web Apps</span>
+                    <span class="item-meta">React</span>
+                </div>
+                <p class="item-desc">
+                    A quiz platform where teachers can add questions and students can practise
+                    through interactive quizzes. Create an account and try it yourself.
                 </p>
-                <span class="project-link">Bekijk live</span>
+                <span class="go">take a look</span>
             </a>
-
         </div>
-        <div class="projects-grid">
+    </section>
 
-            <a href="https://eindopdrachtikramda.onrender.com/" target="_blank" class="project-card">
-                <div class="project-tag">React </div>
-                <div class="project-title">Dynamische Webapps</div>
-                <p class="project-desc">
-                    Een quizplatform waar docenten vragen kunnen toevoegen en studenten kunnen oefenen
-                    via interactieve quizzes. Maak een account aan en probeer het zelf.
-                </p>
-                <span class="project-link">Bekijk live</span>
-            </a>
-
-        </div>
-        <hr class="divider">
-
-        <div class="section-title">Werkervaring</div>
-        <div class="timeline">
-
-            <div class="tl-item">
-                <div class="tl-dot"></div>
-                <div class="tl-date">sep 2025 – heden</div>
-                <div class="tl-title">Logiscool Coach</div>
-                <div class="tl-desc">Programmeerlessen geven aan kinderen.</div>
-            </div>
-
-            <div class="tl-item">
-                <div class="tl-dot"></div>
-                <div class="tl-date">apr 2025 – heden</div>
-                <div class="tl-title">Kampcoach — Beweeghelden</div>
-                <div class="tl-desc">Kinderen stem en crea sessies geven, stimuleren op een leerrijke manier.</div>
-            </div>
-
-            <div class="tl-item">
-                <div class="tl-dot"></div>
-                <div class="tl-date">feb 2024 – jul 2024</div>
-                <div class="tl-title">Jobstudent Klantendienst — Engie</div>
-                <div class="tl-desc">Telefoon opnemen, contracten opstellen, informatie geven ivm energieprijzen, verhuis regelen, Moves, Sales & Callback.</div>
-            </div>
-
-            <div class="tl-item">
-                <div class="tl-dot"></div>
-                <div class="tl-date">mrt 2022 – apr 2022</div>
-                <div class="tl-title">Stage Agfa Gevaert — Mortsel</div>
-                <div class="tl-desc">Pc's installeren en instellen, switches controleren, server installeren en launchen, hardware onderdelen wisselen/upgraden.</div>
-            </div>
-
-        </div>
-
-    </main>
-
-    <!-- ══ SIDEBAR RIGHT ══ -->
-    <aside class="sidebar-right">
-
+    <section>
+        <div class="label">experience</div>
         <div>
-            <div class="section-title">Frontend</div>
-            <div class="skill-group">
-                <span class="skill-pill highlight">HTML</span>
-                <span class="skill-pill highlight">CSS</span>
-                <span class="skill-pill highlight">JavaScript</span>
-                <span class="skill-pill highlight">React</span>
-                <span class="skill-pill highlight">Tailwind</span>
+            <div class="item">
+                <div class="item-head">
+                    <span class="item-title">Intern — Bookbetter</span>
+                    <span class="item-meta">Sep 2026 – present</span>
+                </div>
+                <p class="item-desc">Building features with Django and React, working in Jira and tracking product usage with PostHog.</p>
+            </div>
+            <div class="item">
+                <div class="item-head">
+                    <span class="item-title">Logiscool Coach</span>
+                    <span class="item-meta">Sep 2025 – present</span>
+                </div>
+                <p class="item-desc">Teaching programming lessons to children.</p>
+            </div>
+            <div class="item">
+                <div class="item-head">
+                    <span class="item-title">Camp Coach — Beweeghelden</span>
+                    <span class="item-meta">Apr 2025 – present</span>
+                </div>
+                <p class="item-desc">Giving children voice and creative sessions, encouraging them in an educational way.</p>
+            </div>
+            <div class="item">
+                <div class="item-head">
+                    <span class="item-title">Student Job Customer Service — Engie</span>
+                    <span class="item-meta">Feb 2024 – Jul 2024</span>
+                </div>
+                <p class="item-desc">Answering phone calls, drawing up contracts, giving information on energy prices, arranging moves, Moves, Sales &amp; Callback.</p>
+            </div>
+            <div class="item">
+                <div class="item-head">
+                    <span class="item-title">Internship Agfa Gevaert — Mortsel</span>
+                    <span class="item-meta">Mar 2022 – Apr 2022</span>
+                </div>
+                <p class="item-desc">Installing and configuring PCs, checking switches, installing and launching a server, replacing/upgrading hardware components.</p>
             </div>
         </div>
+    </section>
 
+    <section>
+        <div class="label">education</div>
         <div>
-            <div class="section-title">Backend</div>
-            <div class="skill-group">
-                <span class="skill-pill">SQL</span>
-                <span class="skill-pill">Java</span>
-                <span class="skill-pill">Spring Boot</span>
+            <div class="item">
+                <div class="item-head">
+                    <span class="item-title">Legal Practice — AP University of Applied Sciences</span>
+                    <span class="item-meta">Sep 2026 – present</span>
+                </div>
+                <p class="item-desc">Studying alongside programming, with the aim of specialising in business law.</p>
+            </div>
+            <div class="item">
+                <div class="item-head">
+                    <span class="item-title">Programming — Thomas More</span>
+                    <span class="item-meta">Sep 2025 – present</span>
+                </div>
+                <p class="item-desc">Programming studies with a focus on full-stack development.</p>
             </div>
         </div>
+    </section>
 
-        <div>
-            <div class="section-title">Tools</div>
-            <div class="code-block">
-                <span class="cb-comment">// Tools & meer</span><br>
-                <span class="cb-keyword">const</span> tools = {<br>
-                &nbsp;&nbsp;editor: <span class="cb-string">'VS Code'</span>,<br>
-                &nbsp;&nbsp;vcs: <span class="cb-string">'Git'</span>,<br>
-                &nbsp;&nbsp;platform: <span class="cb-string">'GitHub'</span>,<br>
-                &nbsp;&nbsp;design: <span class="cb-string">'Figma'</span><br>
-                };
-            </div>
-        </div>
-
-        <div>
-            <div class="section-title">Huidige focus</div>
-            <div class="focus-card">
-                <span class="kw">async function</span> <span class="fn">learnMore</span>() {<br>
-                &nbsp;&nbsp;await <span class="fn">master</span>(<span class="str">'React'</span>);<br>
-                &nbsp;&nbsp;<span class="kw">return</span> <span class="ret">'Stageplaats!'</span>;<br>
-                }
-            </div>
-        </div>
-
-    </aside>
+    <section>
+        <div class="label">skills</div>
+        <dl class="skills">
+            <div class="skill-row"><dt>Frontend</dt><dd>HTML, CSS, JavaScript, TypeScript, React, Tailwind</dd></div>
+            <div class="skill-row"><dt>Backend</dt><dd>SQL, Java, Spring Boot, Django, PHP, Supabase</dd></div>
+            <div class="skill-row"><dt>Tools</dt><dd>Git, Jira, Azure, PostHog, Docker, Postman, Stripe</dd></div>
+            <div class="skill-row"><dt>Languages</dt><dd>Dutch (native), Arabic (fluent), English (good)</dd></div>
+            <div class="skill-row"><dt>Soft skills</dt><dd>Teamwork, communication, problem solving, responsible, eager to learn, independent</dd></div>
+        </dl>
+    </section>
 
 </div>
 
 <script>
-    // ── HERO CANVAS ──
-    const canvas = document.getElementById('heroCanvas');
-    const ctx    = canvas.getContext('2d');
+    // ── Achtergrond: opstijgende STEM-, finance- en rechtssymbolen (alleen zichtbaar naast het paneel) ──
+    const canvas = document.getElementById('bg');
+    const ctx = canvas.getContext('2d');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const symbols = [
+        '∑', 'π', '∫', '√', '∞', 'Δ', '∂', 'λ', 'e^x', 'E=mc²', 'x²', 'f(x)',
+        '$', '€', '%', '↗', '↘', '+%', 'ROI', 'P/E', 'Δ%', '±', 'CAGR', 'EBIT',
+        '§', '¶', '©', 'Art.', '§ 1', 'Art. 6', 'lex', 'ius', 'cf.', 'ibid.'
+    ];
+    let particles = [];
+
+    function makeParticle(randomY) {
+        return {
+            x: Math.random() * canvas.width,
+            y: randomY ? Math.random() * canvas.height : canvas.height + 20,
+            symbol: symbols[Math.floor(Math.random() * symbols.length)],
+            speed: 0.15 + Math.random() * 0.3,
+            opacity: 0.07 + Math.random() * 0.16,
+            size: 12 + Math.floor(Math.random() * 14)
+        };
+    }
 
     function resize() {
-        canvas.width  = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        particles = Array.from({ length: Math.round(canvas.width / 14) }, () => makeParticle(true));
     }
     resize();
     window.addEventListener('resize', resize);
 
-    const symbols = ['{}', '//', '=>', '<>', '()', '[]', '&&', '||', '+=', '!=', 'fn', ';;', '...', '<<'];
-    const particles = Array.from({ length: 40 }, () => ({
-        x:       Math.random() * canvas.width,
-        y:       Math.random() * canvas.height,
-        symbol:  symbols[Math.floor(Math.random() * symbols.length)],
-        speed:   0.25 + Math.random() * 0.5,
-        opacity: 0.05 + Math.random() * 0.15,
-        size:    11 + Math.floor(Math.random() * 10)
-    }));
+    let symRgb = '255, 255, 255';
 
-    function draw() {
+    function drawFrame() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         particles.forEach(p => {
-            ctx.font      = `${p.size}px 'DM Mono', monospace`;
-            ctx.fillStyle = `rgba(232, 122, 172, ${p.opacity})`;
+            ctx.font = `${p.size}px 'DM Mono', monospace`;
+            ctx.fillStyle = `rgba(${symRgb}, ${p.opacity})`;
             ctx.fillText(p.symbol, p.x, p.y);
-            p.y -= p.speed;
-            if (p.y < -20) {
-                p.y      = canvas.height + 20;
-                p.x      = Math.random() * canvas.width;
-                p.symbol = symbols[Math.floor(Math.random() * symbols.length)];
-            }
+            if (!reduceMotion) p.y -= p.speed;
+            if (p.y < -20) Object.assign(p, makeParticle(false));
         });
-        requestAnimationFrame(draw);
     }
-    draw();
+    function loop() {
+        drawFrame();
+        if (!reduceMotion) requestAnimationFrame(loop);
+    }
+
+    // ── Dark / light mode ──
+    const root = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+
+    function applyTheme(theme, save) {
+        root.setAttribute('data-theme', theme);
+        toggle.textContent = theme === 'light' ? 'dark mode' : 'light mode';
+        toggle.setAttribute('aria-label', theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+        symRgb = getComputedStyle(root).getPropertyValue('--sym').trim() || '255, 255, 255';
+        if (save) { try { localStorage.setItem('theme', theme); } catch (e) {} }
+        if (reduceMotion) drawFrame();
+    }
+    toggle.addEventListener('click', () => {
+        applyTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light', true);
+    });
+
+    applyTheme(root.getAttribute('data-theme') === 'light' ? 'light' : 'dark', false);
+    loop();
 </script>
 </body>
 </html>
